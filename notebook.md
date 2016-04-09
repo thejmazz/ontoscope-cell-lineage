@@ -145,3 +145,8 @@ $$ \textrm{Entropy} = \frac{1}{p} \sum_i \sum_{j = i+1} \textrm{Entropy}(i,j) $$
       $$ ND = \frac{|\mu_1 - \mu_2|}{\frac{\sigma_1 + \sigma_2}{2}} $$
     * overlap percentage
       $$ \textrm{Overlap} = \frac{\sum_{i=1}^{n_X} \sum_{j=1}^{n_Y} 1 \cdot \{\textrm{Dist}_Y(j) < \textrm{Dist}_X(i)\}}{n_X \cdot n_Y} $$
+
+### Notes
+
+- [StemDB](https://www.stemdb.org/StemDbWeb/celllines) has no cellines info..and signup 500s..
+- [StemBase](http://www.stembase.ca/?path=/search/advanced) has a [cell lines list](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/cell-lines.md)
