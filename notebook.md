@@ -150,3 +150,16 @@ $$ \textrm{Entropy} = \frac{1}{p} \sum_i \sum_{j = i+1} \textrm{Entropy}(i,j) $$
 
 - [StemDB](https://www.stemdb.org/StemDbWeb/celllines) has no cellines info..and signup 500s..
 - [StemBase](http://www.stembase.ca/?path=/search/advanced) has a [cell lines list](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/cell-lines.md)
+- [NCI60 List](https://dtp.cancer.gov/discovery_development/nci-60/cell_list.htm) (cancer cell line)
+- [Sigma-Alrich Top 100 Cell Lines](https://www.sigmaaldrich.com/europe/life-science-offers/cell-cycle/sigma-ecacc-cell/top-100.html)
+- [Cell line ontology](http://www.clo-ontology.org/)
+- got [CSV](http://data.bioontology.org/ontologies/CLO/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb&download_format=csv) from [BioPortal: Cell Line Ontology](http://bioportal.bioontology.org/ontologies/CLO)
+
+**2016/04/10**
+
+- made graph from CLO, using `Preferred.Label` and `Parents` columns
+    * there are a TON of columns (554). and many are not filled for each row.
+    * [cell-line-ontology.R](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/scripts/cell-line-ontology.R)
+    * 39668 Nodes (38600 unique), only 1070 parents, 38620 edges
+    * so: no nice tree. mostly just some clumps. Parents seem to be generic terms
+    * [plot](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/cell-line-ontology.png)
