@@ -62,6 +62,7 @@ names(CCO)[-grep("^http", names(CCO))]
 edges <- CCO[c("Class.ID", "Parents")]
 colnames(edges) <- c("from", "to")
 
+# go from http://www.orpha.net/ORDO/Orphanet_1390 to Orphanet_1390
 edges$from <- unlist(lapply(strsplit(as.character(edges$from), "/"), function(x) tail(x, n=1)))
 edges$to <- unlist(lapply(strsplit(as.character(edges$to), "/"), function(x) tail(x, n=1)))
 
