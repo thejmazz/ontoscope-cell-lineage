@@ -18,13 +18,14 @@ if (!require(visNetwork, quietly=TRUE)) install.packages("visNetwork")
 makeVisNetwork <- function (graph, customLayout="layout_nicely") {
   nodes <- as_data_frame(graph, what="vertices")
   # colnames(nodes) <- c("id")
-  nodes <- data.frame(id=nodes$name, label=nodes$name)
+  # nodes <- data.frame(id=nodes$name, label=nodes$name)
+  nodes <- data.frame(id=nodes$name, label='')
 
   edges <- as_data_frame(graph, what="edges")
   visNetwork(nodes, edges, width = "100%") %>%
     visIgraphLayout(layout = customLayout) %>%
     visNodes(size=5) %>%
-    visEdges(arrows="to")
+    visEdges(arrows="to", smooth=FALSE)
 }
 
 # ==============================================================================
@@ -66,4 +67,19 @@ length(unique(edges$to))
 
 G <- graph_from_data_frame(edges)
 
-makeVisNetwork(G, customLayout="layout_as_tree")
+minC <- rep(-Inf, vcount(G))
+maxC <- rep(Inf, vcount(G))
+minC[1] <- maxC[1] <- 0
+co <- layout_with_fr(G, minx=minC, maxx=maxC, miny=minC, maxy=maxC)
+plot(G, layout=co, vertex.size=0.01, vertex.label=NA, edge.arrow.width=0)
+
+#makeVisNetwork(G, customLayout=co)
+
+# too slow..
+#eb <- cluster_edge_betweenness(G)
+fg <- cluster_fast_greedy(as.undirected(G))
+
+#plot_dendrogram(fg)
+
+# get edges that connect two communities:
+which(crossing(fg, G))

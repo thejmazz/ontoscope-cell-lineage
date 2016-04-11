@@ -166,3 +166,6 @@ $$ \textrm{Entropy} = \frac{1}{p} \sum_i \sum_{j = i+1} \textrm{Entropy}(i,j) $$
 - there is the [CCONT](https://bioportal.bioontology.org/ontologies/CCONT/?p=summary)- [paper](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0048584)
     * [cell-culture-ontology.R](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/scripts/cell-culture-ontology.R)
     * [plot](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CellCultureOntology_01.png)
+    * this data could be manageable and if all the little clusters were separated into nodes. trying out
+    [cluster_edge_betweenness](http://igraph.org/r/doc/cluster_edge_betweenness.html) for this
+    * [pretty gif](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT.gif) (with **fast greedy** clustering)
