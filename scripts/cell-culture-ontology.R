@@ -77,12 +77,11 @@ verts <- data.frame(name=c(edges$from, extras), desc=c(CCO$Preferred.Label, "EXT
 
 G <- graph_from_data_frame(edges, vertices=verts)
 
-minC <- rep(-Inf, vcount(G))
-maxC <- rep(Inf, vcount(G))
-minC[1] <- maxC[1] <- 0
-co <- layout_with_fr(G, minx=minC, maxx=maxC, miny=minC, maxy=maxC)
-plot(G, layout=co, vertex.size=0.01, vertex.label=NA, edge.arrow.width=0)
-
+# minC <- rep(-Inf, vcount(G))
+# maxC <- rep(Inf, vcount(G))
+# minC[1] <- maxC[1] <- 0
+# co <- layout_with_fr(G, minx=minC, maxx=maxC, miny=minC, maxy=maxC)
+# plot(G, layout=co, vertex.size=0.01, vertex.label=NA, edge.arrow.width=0)
 #makeVisNetwork(G, customLayout=co)
 
 # too slow..

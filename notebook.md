@@ -210,3 +210,5 @@ KEGG seems to only have hematopoietic cell lineage:
 
 - [Re(de)fining the dendritic cell lineage](http://www.nature.com/ni/journal/v13/n12/abs/ni.2467.html)
 - [Transcriptional regulation of the NKT cell lineage](http://www.sciencedirect.com/science/article/pii/S0952791513000046)
+
+- [fast greedy fantom clustering](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_01.gif)
