@@ -194,3 +194,7 @@ rooted at EFO_0000324:
 
 rooted at EFO_0000508:
 ![EFO_0000508](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_EFO_0000508.png?raw=true)
+
+
+The last one is too big for a screenshot. [Browse network here](http://thejmazz.github.io/ontoscope-cell-lineage/CCONT_fast-greedy_desc.html). Make sure to use
+the [fullscreen fix](https://github.com/hyginn/Ontoscope/tree/master/phylify#visnetwork).
