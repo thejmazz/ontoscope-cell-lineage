@@ -42,8 +42,29 @@ fantom <- getOBOCollection(nicePath("../data/ff-phase2-140729.obo"))
 g <- getIgraph(fantom)
 
 fg <- cluster_fast_greedy(as.undirected(g))
-# plot_dendrogram(fg)
-plot(fg, g, vertex.size=0.01, vertex.label=NA, edge.arrow.width=0)
-plot()
-
+#plot(fg, g, vertex.size=0.01, vertex.label=NA, edge.arrow.width=0)
 g2 <- getGraphCleanedByClusters(g, fg)
+
+# takes too long
+# eb <- cluster_edge_betweenness(g)
+
+im <- cluster_infomap(g)
+#plot(im, g, vertex.size=0.01, vertex.label=NA, edge.arrow.width=0)
+
+# takes too long
+#lp <- cluster_label_prop(g)
+
+le <- cluster_leading_eigen(as.undirected(g))
+#plot(le, g, vertex.size=0.01, vertex.label=NA, edge.arrow.width=0)
+
+louv <- cluster_louvain(as.undirected(g))
+# plot(louv, g, vertex.size=0.01, vertex.label=NA, edge.arrow.width=0)
+
+# too slow
+# opt <- cluster_optimal(g)
+
+# does not work with unconnected graph
+# sg <- cluster_spinglass(g)
+
+wt <- cluster_walktrap(g)
+# plot(wt, g, vertex.size=0.01, vertex.label=NA, edge.arrow.width=0)

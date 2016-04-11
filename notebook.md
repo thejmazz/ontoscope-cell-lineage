@@ -212,3 +212,25 @@ KEGG seems to only have hematopoietic cell lineage:
 - [Transcriptional regulation of the NKT cell lineage](http://www.sciencedirect.com/science/article/pii/S0952791513000046)
 
 - [fast greedy fantom clustering](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_01.gif)
+
+#### comparing clustering algs. on all of fantom
+
+**fantom_cluster_fast_greedy**
+![fantom_cluster_fast_greedy](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_fast_greedy.png)
+
+**fantom_cluster_infomap**
+![fantom_cluster_infomap](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_infomap.png)
+
+**fantom_cluster_leading_eigen**
+![fantom_cluster_leading_eigen](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_leading_eigen.png)
+
+**fantom_cluster_louvain**
+![fantom_cluster_louvain](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_louvain.png)
+
+**fantom_cluster_waltrap**
+![fantom_cluster_waltrap](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_waltrap.png)
+
+
+- from KEGG:
+
+> Blood-cell development progresses from a hematopoietic stem cell (HSC), which can undergo either self-renewal or differentiation into a multilineage committed progenitor cell: a common lymphoid progenitor (CLP) or a common myeloid progenitor (CMP). A CLP gives rise to the lymphoid lineage of white blood cells or leukocytes-the natural killer (NK) cells and the T and B lymphocytes. A CMP gives rise to the myeloid lineage, which comprises the rest of the leukocytes, the erythrocytes (red blood cells), and the megakaryocytes that produce platelets important in blood clotting. Cells undergoing these differentiation process express a stage- and lineage-specific set of surface markers. Therefore cellular stages are identified by the specific expression patterns of these genes.
