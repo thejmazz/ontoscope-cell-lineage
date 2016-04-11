@@ -17,6 +17,26 @@ if (!require(GSEABase, quietly=TRUE)) getBioconductorPackage("GSEABase")
 
 source(nicePath("ontology-explorer.r"))
 
+# overloading makeVisNetwork
+
+makeVisNetwork <- function (graph, customLayout="layout_nicely") {
+  nodes <- as_data_frame(graph, what="vertices")
+  # colnames(nodes) <- c("id")
+  nodes <- data.frame(id=nodes$name, label=nodes$name)
+  # nodes <- data.frame(id=nodes$name, label='')
+  # nodes <- data.frame(id=nodes$name, label=nodes$desc)
+
+  edges <- as_data_frame(graph, what="edges")
+  visNet <<- visNetwork(nodes, edges, width = "100%") %>%
+    # visHierarchicalLayout(levelSeparation=250) %>%
+    # visHierarchicalLayout(direction="LR", levelSeparation=250) %>%
+    # visIgraphLayout(layout = customLayout) %>%
+    visNodes(size=5) %>%
+    visEdges(arrows="to", smooth=TRUE)
+  visNet
+}
+
+
 # ==============================================================================
 # functions
 
@@ -36,6 +56,7 @@ getGraphCleanedByClusters <- function(g, communities) {
 }
 
 # ==============================================================================
+# playing with different clustering algs.
 
 fantom <- getOBOCollection(nicePath("../data/ff-phase2-140729.obo"))
 
@@ -68,3 +89,17 @@ louv <- cluster_louvain(as.undirected(g))
 
 wt <- cluster_walktrap(g)
 # plot(wt, g, vertex.size=0.01, vertex.label=NA, edge.arrow.width=0)
+
+# ==============================================================================
+# Let's consider only CL terms:
+
+CLs <- as_ids(V(g))[grep("^CL", as_ids(V(g)))]
+
+# There are 475 of these. Is a graph with only CLs connected?
+
+gCL <- filterByGood(g, CLs)
+count_components(gCL) # 1. nice.
+
+plot(gCL, layout=layout_as_tree(gCL, root="CL:0000003"))
+
+makeVisNetwork(getGraphCleanedByClusters(gCL, cluster_fast_greedy(as.undirected(gCL))))

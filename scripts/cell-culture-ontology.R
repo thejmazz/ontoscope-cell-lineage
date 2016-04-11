@@ -29,6 +29,7 @@ makeVisNetwork <- function (graph, customLayout="layout_nicely") {
     # visIgraphLayout(layout = customLayout) %>%
     visNodes(size=5) %>%
     visEdges(arrows="to", smooth=TRUE)
+  visNet
 }
 
 # ==============================================================================

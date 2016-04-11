@@ -234,3 +234,8 @@ KEGG seems to only have hematopoietic cell lineage:
 - from KEGG:
 
 > Blood-cell development progresses from a hematopoietic stem cell (HSC), which can undergo either self-renewal or differentiation into a multilineage committed progenitor cell: a common lymphoid progenitor (CLP) or a common myeloid progenitor (CMP). A CLP gives rise to the lymphoid lineage of white blood cells or leukocytes-the natural killer (NK) cells and the T and B lymphocytes. A CMP gives rise to the myeloid lineage, which comprises the rest of the leukocytes, the erythrocytes (red blood cells), and the megakaryocytes that produce platelets important in blood clotting. Cells undergoing these differentiation process express a stage- and lineage-specific set of surface markers. Therefore cellular stages are identified by the specific expression patterns of these genes.
+
+#### taking only CL IDs
+
+**fantom_CL_layout_nicely**
+![fantom_CL_layout_nicely](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_CL_layout_nicely.png)
