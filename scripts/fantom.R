@@ -55,6 +55,13 @@ getGraphCleanedByClusters <- function(g, communities) {
   return(g)
 }
 
+getNameFromID <- function(fantom, id) {
+  keyVals <- fantom@.kv[fantom@.kv$stanza_id == id,]
+  name <- keyVals$value[keyVals$key == "name"]
+
+  return(name)
+}
+
 # ==============================================================================
 # playing with different clustering algs.
 
@@ -100,6 +107,20 @@ CLs <- as_ids(V(g))[grep("^CL", as_ids(V(g)))]
 gCL <- filterByGood(g, CLs)
 count_components(gCL) # 1. nice.
 
-plot(gCL, layout=layout_as_tree(gCL, root="CL:0000003"))
 
 makeVisNetwork(getGraphCleanedByClusters(gCL, cluster_fast_greedy(as.undirected(gCL))))
+
+
+gCL2 <- getGraphCleanedByClusters(gCL, cluster_fast_greedy(as.undirected(gCL)))
+
+nodes <- as_data_frame(gCL2, what="vertices")
+colnames(nodes) <- c("id")
+nodes$label <- lapply(nodes$id, function(x) getNameFromID(fantom, x))
+edges <- as_data_frame(gCL2, what="edges")
+
+visNet <- visNetwork(nodes, edges, width = "100%") %>%
+  visHierarchicalLayout(levelSeparation=250) %>%
+  # visHierarchicalLayout(direction="LR", levelSeparation=250) %>%
+  # visIgraphLayout(layout = customLayout) %>%
+  visNodes(size=5) %>%
+  visEdges(arrows="to", smooth=TRUE)
