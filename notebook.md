@@ -198,3 +198,15 @@ rooted at EFO_0000508:
 
 The last one is too big for a screenshot. [Browse network here](http://thejmazz.github.io/ontoscope-cell-lineage/CCONT_fast-greedy_desc.html). Make sure to use
 the [fullscreen fix](https://github.com/hyginn/Ontoscope/tree/master/phylify#visnetwork).
+
+This seems to essentially be a hierarchy of genetic disorders.
+
+Not too useful as a cell lineage.
+
+Thus not much to compare against FANTOM.
+
+KEGG seems to only have hematopoietic cell lineage:
+![kegg-pic](https://cloud.githubusercontent.com/assets/1270998/14418553/6b7e7b58-ff8d-11e5-81f7-9ff3716ee3c1.png)
+
+- [Re(de)fining the dendritic cell lineage](http://www.nature.com/ni/journal/v13/n12/abs/ni.2467.html)
+- [Transcriptional regulation of the NKT cell lineage](http://www.sciencedirect.com/science/article/pii/S0952791513000046)

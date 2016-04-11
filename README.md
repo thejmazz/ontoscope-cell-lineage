@@ -7,4 +7,4 @@ Are [known lineages](https://www.google.ca/search?num=100&q=human+cell+lineage+t
 
 ## Notebook
 
-[Notebook here](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/notebook.pdf)
+[Notebook here](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/notebook.md)
