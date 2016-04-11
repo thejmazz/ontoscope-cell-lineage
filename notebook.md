@@ -163,3 +163,6 @@ $$ \textrm{Entropy} = \frac{1}{p} \sum_i \sum_{j = i+1} \textrm{Entropy}(i,j) $$
     * 39668 Nodes (38600 unique), only 1070 parents, 38620 edges
     * so: no nice tree. mostly just some clumps. Parents seem to be generic terms
     * [plot](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/cell-line-ontology.png)
+- there is the [CCONT](https://bioportal.bioontology.org/ontologies/CCONT/?p=summary)- [paper](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0048584)
+    * [cell-culture-ontology.R](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/scripts/cell-culture-ontology.R)
+    * [plot](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CellCultureOntology_01.png)
