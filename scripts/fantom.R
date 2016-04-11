@@ -22,7 +22,7 @@ source(nicePath("ontology-explorer.r"))
 makeVisNetwork <- function (graph, customLayout="layout_nicely") {
   nodes <- as_data_frame(graph, what="vertices")
   # colnames(nodes) <- c("id")
-  nodes <- data.frame(id=nodes$name, label=nodes$name)
+  nodes <- data.frame(id=nodes$name, label=nodes$label)
   # nodes <- data.frame(id=nodes$name, label='')
   # nodes <- data.frame(id=nodes$name, label=nodes$desc)
 
@@ -30,9 +30,9 @@ makeVisNetwork <- function (graph, customLayout="layout_nicely") {
   visNet <<- visNetwork(nodes, edges, width = "100%") %>%
     # visHierarchicalLayout(levelSeparation=250) %>%
     # visHierarchicalLayout(direction="LR", levelSeparation=250) %>%
-    # visIgraphLayout(layout = customLayout) %>%
+    visIgraphLayout(layout = customLayout) %>%
     visNodes(size=5) %>%
-    visEdges(arrows="to", smooth=TRUE)
+    visEdges(arrows="to", smooth=FALSE)
   visNet
 }
 
@@ -68,6 +68,9 @@ getNameFromID <- function(fantom, id) {
 fantom <- getOBOCollection(nicePath("../data/ff-phase2-140729.obo"))
 
 g <- getIgraph(fantom)
+# TODO move into getIgraph
+labels <- unlist(lapply(as.list(as_ids(V(g))), function(x) getNameFromID(fantom, x)))
+g <- set_vertex_attr(g, "label", value=labels)
 
 fg <- cluster_fast_greedy(as.undirected(g))
 #plot(fg, g, vertex.size=0.01, vertex.label=NA, edge.arrow.width=0)
@@ -106,21 +109,11 @@ CLs <- as_ids(V(g))[grep("^CL", as_ids(V(g)))]
 
 gCL <- filterByGood(g, CLs)
 count_components(gCL) # 1. nice.
-
+makeVisNetwork(gCL)
 
 makeVisNetwork(getGraphCleanedByClusters(gCL, cluster_fast_greedy(as.undirected(gCL))))
 
 
 gCL2 <- getGraphCleanedByClusters(gCL, cluster_fast_greedy(as.undirected(gCL)))
-
-nodes <- as_data_frame(gCL2, what="vertices")
-colnames(nodes) <- c("id")
-nodes$label <- lapply(nodes$id, function(x) getNameFromID(fantom, x))
-edges <- as_data_frame(gCL2, what="edges")
-
-visNet <- visNetwork(nodes, edges, width = "100%") %>%
-  visHierarchicalLayout(levelSeparation=250) %>%
-  # visHierarchicalLayout(direction="LR", levelSeparation=250) %>%
-  # visIgraphLayout(layout = customLayout) %>%
-  visNodes(size=5) %>%
-  visEdges(arrows="to", smooth=TRUE)
+labels <- unlist(lapply(nodes$id, function(x) getNameFromID(fantom, x)))
+gCL2 <- set_vertex_attr(gCL2, "label", value=labels)
