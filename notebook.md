@@ -173,3 +173,12 @@ $$ \textrm{Entropy} = \frac{1}{p} \sum_i \sum_{j = i+1} \textrm{Entropy}(i,j) $$
 **2016/04/11**
 
 - took only those edges which connect clusters defined by **fast greedy**: [plot](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CellCultureOntology_02.png)
+- produces three main trees:
+  large
+ ![cluster1](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_01.png?raw=true)
+ medium
+ ![cluster2](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_02.png?raw=true)
+ small
+ ![cluster3](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_03.png?raw=true)
+ extras
+ ![cluster4](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_04.png?raw=true)

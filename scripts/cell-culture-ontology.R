@@ -18,8 +18,8 @@ if (!require(visNetwork, quietly=TRUE)) install.packages("visNetwork")
 makeVisNetwork <- function (graph, customLayout="layout_nicely") {
   nodes <- as_data_frame(graph, what="vertices")
   # colnames(nodes) <- c("id")
-  # nodes <- data.frame(id=nodes$name, label=nodes$name)
-  nodes <- data.frame(id=nodes$name, label='')
+  nodes <- data.frame(id=nodes$name, label=nodes$name)
+  # nodes <- data.frame(id=nodes$name, label='')
 
   edges <- as_data_frame(graph, what="edges")
   visNetwork(nodes, edges, width = "100%") %>%
