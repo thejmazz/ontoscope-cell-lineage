@@ -15,6 +15,7 @@ if (!require(igraph, quietly=TRUE)) install.packages("igraph")
 # talk to vis.js, with igraph!
 if (!require(visNetwork, quietly=TRUE)) install.packages("visNetwork")
 
+
 makeVisNetwork <- function (graph, customLayout="layout_nicely") {
   nodes <- as_data_frame(graph, what="vertices")
   # colnames(nodes) <- c("id")
@@ -23,7 +24,7 @@ makeVisNetwork <- function (graph, customLayout="layout_nicely") {
   nodes <- data.frame(id=nodes$name, label=nodes$desc)
 
   edges <- as_data_frame(graph, what="edges")
-  visNetwork(nodes, edges, width = "100%") %>%
+  visNet <<- visNetwork(nodes, edges, width = "100%") %>%
     visHierarchicalLayout(direction="LR", levelSeparation=250) %>%
     # visIgraphLayout(layout = customLayout) %>%
     visNodes(size=5) %>%

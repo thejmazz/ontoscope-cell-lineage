@@ -187,10 +187,10 @@ $$ \textrm{Entropy} = \frac{1}{p} \sum_i \sum_{j = i+1} \textrm{Entropy}(i,j) $$
 The extras are too small to describe cell lines. Here are the plots with labels as descriptions:
 
 rooted at EFO_0000787:
-![EFO_0000787](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_EFO_0000787)
+![EFO_0000787](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_EFO_0000787.png?raw=true)
 
 rooted at EFO_0000324:
-![EFO_0000324](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_EFO_0000324)
+![EFO_0000324](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_EFO_0000324.png?raw=true)
 
 rooted at EFO_0000508:
-![EFO_0000508](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_EFO_0000508)
+![EFO_0000508](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_EFO_0000508.png?raw=true)
