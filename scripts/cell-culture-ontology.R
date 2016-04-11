@@ -82,4 +82,13 @@ fg <- cluster_fast_greedy(as.undirected(G))
 #plot_dendrogram(fg)
 
 # get edges that connect two communities:
-which(crossing(fg, G))
+explorers <- as.integer(which(crossing(fg, G)))
+
+# take all the rest:
+proles <- seq(1, length(E(G)))[-explorers]
+
+G2 <- delete_edges(G, proles)
+# clean out unusued vertices
+G2 <- delete.vertices(G2, which(igraph::degree(G2) == 0))
+
+makeVisNetwork(G2)

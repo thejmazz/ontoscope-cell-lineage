@@ -169,3 +169,7 @@ $$ \textrm{Entropy} = \frac{1}{p} \sum_i \sum_{j = i+1} \textrm{Entropy}(i,j) $$
     * this data could be manageable and if all the little clusters were separated into nodes. trying out
     [cluster_edge_betweenness](http://igraph.org/r/doc/cluster_edge_betweenness.html) for this
     * [pretty gif](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT.gif) (with **fast greedy** clustering)
+
+**2016/04/11**
+
+- took only those edges which connect clusters defined by **fast greedy**: [plot](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CellCultureOntology_02.png)
