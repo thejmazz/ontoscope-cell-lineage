@@ -228,7 +228,7 @@ KEGG seems to only have hematopoietic cell lineage:
 ![fantom_cluster_louvain](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_louvain.png)
 
 **fantom_cluster_waltrap**
-![fantom_cluster_waltrap](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_waltrap.png)
+![fantom_cluster_walktrap](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_walktrap.png)
 
 
 - from KEGG:
