@@ -174,6 +174,7 @@ $$ \textrm{Entropy} = \frac{1}{p} \sum_i \sum_{j = i+1} \textrm{Entropy}(i,j) $$
 
 - took only those edges which connect clusters defined by **fast greedy**: [plot](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CellCultureOntology_02.png)
 - produces three main trees:
+
   large
  ![cluster1](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_01.png?raw=true)
  medium
@@ -182,3 +183,14 @@ $$ \textrm{Entropy} = \frac{1}{p} \sum_i \sum_{j = i+1} \textrm{Entropy}(i,j) $$
  ![cluster3](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_03.png?raw=true)
  extras
  ![cluster4](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_04.png?raw=true)
+
+The extras are too small to describe cell lines. Here are the plots with labels as descriptions:
+
+rooted at EFO_0000787:
+![EFO_0000787](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_EFO_0000787)
+
+rooted at EFO_0000324:
+![EFO_0000324](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_EFO_0000324)
+
+rooted at EFO_0000508:
+![EFO_0000508](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/CCONT_cluster_EFO_0000508)
