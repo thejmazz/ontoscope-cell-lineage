@@ -21,11 +21,22 @@ source(nicePath("ontology-explorer.r"))
 
 makeVisNetwork <- function (graph,
   smooth=FALSE,
+  cluster=FALSE, clusterAlg=cluster_edge_betweenness, clusterAsUndirected=FALSE
   hierarchicalLayout=FALSE, levelSeparation=250, direction="UD",
   igraphLayout=TRUE, layout="layout_nicely") {
 
   nodes <- as_data_frame(graph, what="vertices")
   colnames(nodes) <- c("id", "label")
+
+  if (cluster) {
+    if (clusterAsUndirected) {
+      clusters <- clusterAlg(as.undirected(graph))
+    } else {
+      clusters <- clusterAlg(graph)
+    }
+
+    nodes$group = clusters$membership
+  }
 
   edges <- as_data_frame(graph, what="edges")
 
@@ -115,9 +126,16 @@ wt <- cluster_walktrap(g)
 CLs <- as_ids(V(g))[grep("^CL", as_ids(V(g)))]
 
 # There are 475 of these. Is a graph with only CLs connected?
-
 gCL <- filterByGood(g, CLs)
 count_components(gCL) # 1. nice.
-makeVisNetwork(graph=gCL)
+
+makeVisNetwork(gCL, layout="layout_with_dh")
+makeVisNetwork(gCL, layout="layout_with_lgl")
+makeVisNetwork(gCL, layout="layout_with_kk")
+
+makeVisNetwork(gCL, cluster=TRUE, clusterAlg=cluster_fast_greedy, clusterAsUndirected=TRUE)
+
+#cluster_fast_greedy(as.undirected(gCL))
+
 
 makeVisNetwork(getGraphCleanedByClusters(gCL, cluster_fast_greedy(as.undirected(gCL))), hierarchicalLayout=TRUE)
