@@ -18,6 +18,8 @@ if (!require(GSEABase, quietly=TRUE)) getBioconductorPackage("GSEABase")
 # interface between KEGG pathways and graph model
 if (!require(KEGGgraph, quietly=TRUE)) getBioconductorPackage("KEGGgraph")
 
+# if (!require(GraphAlignment, quietly=TRUE)) getBioconductorPackage("GraphAlignment")
+
 source(nicePath("ontology-explorer.r"))
 
 # overloading makeVisNetwork
@@ -25,12 +27,13 @@ source(nicePath("ontology-explorer.r"))
 makeVisNetwork <- function (graph,
   smooth=FALSE, useLabel=TRUE,
   cluster=TRUE, clusterAlg=cluster_edge_betweenness, clusterAsUndirected=FALSE,
+  customGroups=FALSE,
   hierarchicalLayout=FALSE, levelSeparation=250, direction="UD",
   igraphLayout=TRUE, layout="layout_nicely") {
 
   nodes <- as_data_frame(graph, what="vertices")
   if (useLabel) {
-    colnames(nodes) <- c("id", "label")
+    nodes <- data.frame(id=nodes$name, label=nodes$label)
   } else {
     nodes <- data.frame(id=nodes$name, label=nodes$name)
   }
@@ -43,6 +46,11 @@ makeVisNetwork <- function (graph,
     }
 
     nodes$group = clusters$membership
+  }
+
+  # customGroups takes precedence over cluster
+  if (customGroups) {
+    nodes$group <- as_data_frame(graph, what="vertices")$group
   }
 
   edges <- as_data_frame(graph, what="edges")
@@ -260,4 +268,36 @@ verts[49]; labels[49] <- "Platelets"
 
 hsa <- set_vertex_attr(hsa, "name", value=verts)
 hsa <- set_vertex_attr(hsa, "label", value=labels)
+# hsa <- set_edge_attr(hsa, "weight", value=rep(1, length(E(hsa))))
 makeVisNetwork(hsa, hierarchicalLayout=TRUE, direction="LR")
+
+# ==============================================================================
+# joining graphs: hematopoietics and hsa
+
+hematopoietics2 <- set_vertex_attr(hematopoietics, "group", value=rep("1", length(V(hematopoietics))))
+makeVisNetwork(hematopoietics, cluster=FALSE, layout="layout_with_kk")
+
+hsa2 <- set_vertex_attr(hsa, "group", value=rep(2, length(V(hsa))))
+makeVisNetwork(hsa2, cluster=TRUE, hierarchicalLayout=TRUE, direction="LR")
+
+joined <- union(hematopoietics2, hsa2, byname=TRUE)
+# cleaning: set all edge weights to 1 (there are some NAs)
+joined <- set_edge_attr(joined, "weight", value=rep(1, length(E(joined))))
+# Clean vertex labels
+V(joined)$label_1[which(is.na(V(joined)$label_1))] <- V(joined)$label_2[which(is.na(V(joined)$label_1))]
+joined <- set_vertex_attr(joined, "label", value=V(joined)$label_1)
+joined <- delete_vertex_attr(joined, "label_1")
+joined <- delete_vertex_attr(joined, "label_2")
+# Clean groups, any NAs in group_2 should be 1s
+group2nas <- which(is.na(V(joined)$group_2))
+V(joined)$group_2[group2nas] <- rep(1, length(group2nas))
+joined <- set_vertex_attr(joined, "group", value=V(joined)$group_2)
+joined <- delete_vertex_attr(joined, "group_1")
+joined <- delete_vertex_attr(joined, "group_2")
+
+
+as_data_frame(joined, what="edges")
+as_data_frame(joined, what="vertices")
+
+
+makeVisNetwork(joined, customGroups=FALSE, useLabel=TRUE, cluster=FALSE, layout="layout_with_kk")
