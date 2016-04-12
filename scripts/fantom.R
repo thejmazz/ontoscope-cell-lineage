@@ -143,3 +143,17 @@ makeVisNetwork(gCL, clusterAlg=cluster_fast_greedy, clusterAsUndirected=TRUE)
 
 
 makeVisNetwork(getGraphCleanedByClusters(gCL, cluster_fast_greedy(as.undirected(gCL))), hierarchicalLayout=TRUE)
+
+# ==============================================================================
+# hematopoietic only
+
+verts <- as_data_frame(gCL, what="vertices")
+verts[grep("hematopoietic", verts$label),]
+
+# by inspection, count does not grow after 8 orders
+hematopoietics <- make_ego_graph(gCL, "CL:0000988", order=8, mode="in")[[1]]
+# and has all terms with hematopoietics
+verts[grep("hematopoietic", verts$label),]$name %in% as_ids(V(hematopoietics))
+
+makeVisNetwork(hematopoietics, hierarchicalLayout=TRUE, direction="LR")
+makeVisNetwork(hematopoietics, layout="layout_with_kk")

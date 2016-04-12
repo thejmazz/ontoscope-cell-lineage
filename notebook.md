@@ -245,3 +245,13 @@ KEGG seems to only have hematopoietic cell lineage:
 
 **fantom_CL_fast_greedy** (only connective edges)
 ![fantom_CL_fast_greedy](./plots/fantom_CL_fast_greedy.png)
+
+### taking only "hematopoietic cell" and 8 orders of in neighbours
+
+after 8 orders, vertex/edge count is constant.
+
+**hematopoietics_hiearchical**
+![hematopoietics_hiearchical](./plots/hematopoietics_hiearchical.png)
+
+**hematopoietics_kk**
+![hematopoietics_kk](./plots/hematopoietics_kk.png)
