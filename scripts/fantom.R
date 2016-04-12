@@ -19,21 +19,30 @@ source(nicePath("ontology-explorer.r"))
 
 # overloading makeVisNetwork
 
-makeVisNetwork <- function (graph, customLayout="layout_nicely") {
+makeVisNetwork <- function (graph,
+  smooth=FALSE,
+  hierarchicalLayout=FALSE, levelSeparation=250, direction="UD",
+  igraphLayout=TRUE, layout="layout_nicely") {
+
   nodes <- as_data_frame(graph, what="vertices")
-  # colnames(nodes) <- c("id")
-  nodes <- data.frame(id=nodes$name, label=nodes$label)
-  # nodes <- data.frame(id=nodes$name, label='')
-  # nodes <- data.frame(id=nodes$name, label=nodes$desc)
+  colnames(nodes) <- c("id", "label")
 
   edges <- as_data_frame(graph, what="edges")
-  visNet <<- visNetwork(nodes, edges, width = "100%") %>%
-    # visHierarchicalLayout(levelSeparation=250) %>%
-    # visHierarchicalLayout(direction="LR", levelSeparation=250) %>%
-    visIgraphLayout(layout = customLayout) %>%
-    visNodes(size=5) %>%
-    visEdges(arrows="to", smooth=FALSE)
+
+  visNet <- visNetwork(nodes, edges, width="100%")
+
+  if (hierarchicalLayout) {
+    visNet <- visHierarchicalLayout(visNet, direction=direction, levelSeparation=levelSeparation)
+  } else if (igraphLayout) {
+    visNet <- visIgraphLayout(visNet, layout=layout)
+  }
+
+  visNet <- visNodes(visNet, size=5)
+  visNet <- visEdges(visNet, arrows="to", smooth=smooth)
+
   visNet
+
+  return(visNet)
 }
 
 
@@ -109,11 +118,6 @@ CLs <- as_ids(V(g))[grep("^CL", as_ids(V(g)))]
 
 gCL <- filterByGood(g, CLs)
 count_components(gCL) # 1. nice.
-makeVisNetwork(gCL)
+makeVisNetwork(graph=gCL)
 
-makeVisNetwork(getGraphCleanedByClusters(gCL, cluster_fast_greedy(as.undirected(gCL))))
-
-
-gCL2 <- getGraphCleanedByClusters(gCL, cluster_fast_greedy(as.undirected(gCL)))
-labels <- unlist(lapply(nodes$id, function(x) getNameFromID(fantom, x)))
-gCL2 <- set_vertex_attr(gCL2, "label", value=labels)
+makeVisNetwork(getGraphCleanedByClusters(gCL, cluster_fast_greedy(as.undirected(gCL))), hierarchicalLayout=TRUE)
