@@ -256,6 +256,8 @@ after 8 orders, vertex/edge count is constant.
 **hematopoietics_kk**
 ![hematopoietics_kk](./plots/hematopoietics_kk.png)
 
+**2016/04/12**
+
 ### using KEGG
 
 - got KEGG data, it has 88 nodes but 0 edges
@@ -263,3 +265,5 @@ after 8 orders, vertex/edge count is constant.
 
 **kegg_hematopoietic_cell_lineage.png**
 ![kegg_hematopoietic_cell_lineage.png](./plots/kegg_hematopoietic_cell_lineage.png)
+
+- manaually normalized node names

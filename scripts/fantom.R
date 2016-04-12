@@ -154,13 +154,13 @@ makeVisNetwork(getGraphCleanedByClusters(gCL, cluster_fast_greedy(as.undirected(
 # ==============================================================================
 # hematopoietic only
 
-verts <- as_data_frame(gCL, what="vertices")
-verts[grep("hematopoietic", verts$label),]
+v <- as_data_frame(gCL, what="vertices")
+v[grep("hematopoietic", v$label),]
 
 # by inspection, count does not grow after 8 orders
 hematopoietics <- make_ego_graph(gCL, "CL:0000988", order=8, mode="in")[[1]]
 # and has all terms with hematopoietics
-verts[grep("hematopoietic", verts$label),]$name %in% as_ids(V(hematopoietics))
+v[grep("hematopoietic", v$label),]$name %in% as_ids(V(hematopoietics))
 
 makeVisNetwork(hematopoietics, hierarchicalLayout=TRUE, direction="LR")
 makeVisNetwork(hematopoietics, layout="layout_with_kk")
@@ -200,5 +200,64 @@ hsa <- make_graph(~
                                               CFU_GEMM-+BFU_MK-+CFU_MK-+Megakaryocyte-+Platelets
 )
 
+verts <- as_ids(V(hsa))
+labels <- as.character(1:length(verts))
 
-makeVisNetwork(hsa, useLabel=FALSE, hierarchicalLayout=TRUE, direction="LR")
+# renaming to match fantom
+verts[1]; labels[1] <- "lymphoid_stem_cell"
+verts[2]; labels[2] <- "lymphoid_related_dendritic_cell"
+verts[3] <- "CL:0000827"; labels[3] <- "pro-T cell" # pro_t_cell ->
+verts[4] <- "CL:0000807"; labels[4] <- "DN3 thymocyte" # DN3 ->
+verts[5] <- "CL:0002427"; labels[5] <- "resting double-positive thymocyte" # double_positive_cell ->
+verts[6] <- "CL:0000809"; labels[6] <- "double-positive, alpha-beta thymocyte" # gamma_phi_t_cell ->
+verts[7]; labels[7] <- "CD8_T_Cell"
+verts[8] <- "CL:0000808"; labels[8] <- "DN4 thymocyte" # DN4 ->
+verts[9] <- "CL:0000805"; labels[9] <- "immature single positive thymocyte" # intermediate_single_positive_cell ->
+verts[10] <- "CL:0002431"; labels[10] <- "CD4-positive, CD8-intermediate double-positive thymocyte" # CD4_T_Cell ->
+verts[11] <- "CL:0000815"; labels[11] <- "regulatory T cell" # Regulatory_T_Cell ->
+verts[12] <- "CL:0000814"; labels[12] <- "mature NK T cell" # NKT_Cell ->
+verts[13] <- "CL:0000914"; labels[13] <- "immature NK T cell" # NK_Cell_Precursor ->
+verts[14] <- "CL:0000825"; labels[14] <- "pro-NK cell" # NK_Cell ->
+verts[15] <- "CL:0000826"; labels[15] <- "pro-B cell" # Pro_B_Cell ->
+verts[16] <- "CL:0000817"; labels[16] <- "precursor B cell" # Pre_I_B_Cell ->
+verts[17] <- "CL:0000955"; labels[17] <- "pre-B-II cell" # Pre_B_II_Cell ->
+verts[18] <- "CL:0000816"; labels[18] <- "immature B cell" # Immature_B_Cell ->
+verts[19] <- "CL:0000236"; labels[19] <- "B cell" # B_Cell ->
+verts[20] <- "CL:0000037"; labels[20] <- "Hematopoietic Stem Cell" # hematopoietic_stem_cell ->
+verts[21]; labels[21] <- "myeloid_stem_cell"
+# CFU-GEMM cells are the multipotential progenitor cells for myeloid cells
+verts[22] <- "CL:0000049"; labels[22] <- "common myeloid progenitor" # CFU_GEMM ->
+# CFU-Mast is a colony forming unit. It gives rise to mast cells.
+verts[23] <- "CL:0000831"; labels[23] <- "mast cell progenitor" # CFU_Mast ->
+verts[24] <- "CL:0000097"; labels[24] <- "mast cell" # Mast_Cell ->
+verts[25] <- "CL:0002028"; labels[25] <- "basophil mast progenitor cell" # CFU_Bas ->
+verts[26] <- "CL:0000835"; labels[26] <- "myeloblast" # Myeloblast ->
+verts[27]; labels[27] <- "Basophilic_Myelocyte"
+verts[28] <- "CL:0000767"; labels[28] <- "basophil" # Basophil ->
+verts[29]; labels[29] <- "CFU_E0"
+verts[30]; labels[30] <- "Eosinophilic_Myelocyte"
+verts[31] <- "CL:0000771"; labels[31] <- "eosinophil" # Eosionophil ->
+verts[32]; labels[32] <- "CFU_MDC"
+verts[33]; labels[33] <- "Myeloid_Related_Dendritic_Cell"
+verts[34] <- "CL:0000576"; labels[34] <- "monocyte" # Monocyte ->
+# precursor for monoblasts and myeloblasts
+verts[35]; labels[35] <- "CFU_GM"
+verts[36] <- "CL:0000040"; labels[36] <- "monoblast" # Monoblast ->
+verts[37] <- "CL:0000559"; labels[37] <- "promonocyte" # Promonocyte ->
+verts[38] <- "CL:0000235"; labels[38] <- "macrophage" # Macrophage ->
+verts[39] <- "CL:0000839"; labels[39] <- "myeloid lineage restricted progenitor cell" # CFU_G ->
+verts[40]; labels[40] <- "Neutrophilic_Myelocyte"
+verts[41] <- "CL:0000775"; labels[41] <- "neutrophil" # Neutrophil ->
+# burst forming unit
+verts[42] <- "CL:0000038"; labels[42] <- "erythroid progenitor cell" # BFU_E ->
+verts[43] <- "CL:0000764"; labels[43] <- "erythroid lineage cell" # CFU_E ->
+verts[44] <- "CL:0000547"; labels[44] <- "proerythroblast" # Proerythroblast ->
+verts[45]; labels[45] <- "Erythrocyte"
+verts[46]; labels[46] <- "BFU_MK"
+verts[47] <- "CL:0000553"; labels[47] <- "megakaryocyte progenitor cell" # CFU_MK ->
+verts[48] <- "CL:0000556"; labels[48] <- "megakaryocyte" # Megakaryocyte ->
+verts[49]; labels[49] <- "Platelets"
+
+hsa <- set_vertex_attr(hsa, "name", value=verts)
+hsa <- set_vertex_attr(hsa, "label", value=labels)
+makeVisNetwork(hsa, hierarchicalLayout=TRUE, direction="LR")
