@@ -255,3 +255,11 @@ after 8 orders, vertex/edge count is constant.
 
 **hematopoietics_kk**
 ![hematopoietics_kk](./plots/hematopoietics_kk.png)
+
+### using KEGG
+
+- got KEGG data, it has 88 nodes but 0 edges
+- transcribed KEGG pathway into igraph:
+
+**kegg_hematopoietic_cell_lineage.png**
+![kegg_hematopoietic_cell_lineage.png](./plots/kegg_hematopoietic_cell_lineage.png)
