@@ -21,7 +21,7 @@ source(nicePath("ontology-explorer.r"))
 
 makeVisNetwork <- function (graph,
   smooth=FALSE,
-  cluster=FALSE, clusterAlg=cluster_edge_betweenness, clusterAsUndirected=FALSE
+  cluster=TRUE, clusterAlg=cluster_edge_betweenness, clusterAsUndirected=FALSE,
   hierarchicalLayout=FALSE, levelSeparation=250, direction="UD",
   igraphLayout=TRUE, layout="layout_nicely") {
 
@@ -129,13 +129,17 @@ CLs <- as_ids(V(g))[grep("^CL", as_ids(V(g)))]
 gCL <- filterByGood(g, CLs)
 count_components(gCL) # 1. nice.
 
-makeVisNetwork(gCL, layout="layout_with_dh")
+edge_attr(gCL, "weight") <- edge_betweenness(gCL)
+
+makeVisNetwork(gCL, clusterAlg=cluster_fast_greedy, clusterAsUndirected=TRUE)
+
+makeVisNetwork(gCL, layout="layout_with_dh", clusterAlg=cluster_fast_greedy, clusterAsUndirected=TRUE)
 makeVisNetwork(gCL, layout="layout_with_lgl")
-makeVisNetwork(gCL, layout="layout_with_kk")
+makeVisNetwork(gCL, layout="layout_with_kk", clusterAlg=cluster_fast_greedy, clusterAsUndirected=TRUE)
 
-makeVisNetwork(gCL, cluster=TRUE, clusterAlg=cluster_fast_greedy, clusterAsUndirected=TRUE)
+makeVisNetwork(gCL, hierarchicalLayout=TRUE)
 
-#cluster_fast_greedy(as.undirected(gCL))
+makeVisNetwork(gCL, clusterAlg=cluster_fast_greedy, clusterAsUndirected=TRUE)
 
 
 makeVisNetwork(getGraphCleanedByClusters(gCL, cluster_fast_greedy(as.undirected(gCL))), hierarchicalLayout=TRUE)

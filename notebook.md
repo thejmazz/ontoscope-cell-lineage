@@ -216,19 +216,19 @@ KEGG seems to only have hematopoietic cell lineage:
 #### comparing clustering algs. on all of fantom
 
 **fantom_cluster_fast_greedy**
-![fantom_cluster_fast_greedy](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_fast_greedy.png)
+![fantom_cluster_fast_greedy](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_fast_greedy.png?raw=true)
 
 **fantom_cluster_infomap**
-![fantom_cluster_infomap](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_infomap.png)
+![fantom_cluster_infomap](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_infomap.png?raw=true)
 
 **fantom_cluster_leading_eigen**
-![fantom_cluster_leading_eigen](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_leading_eigen.png)
+![fantom_cluster_leading_eigen](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_leading_eigen.png?raw=true)
 
 **fantom_cluster_louvain**
-![fantom_cluster_louvain](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_louvain.png)
+![fantom_cluster_louvain](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_louvain.png?raw=true)
 
 **fantom_cluster_waltrap**
-![fantom_cluster_walktrap](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_walktrap.png)
+![fantom_cluster_walktrap](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_cluster_walktrap.png?raw=true)
 
 
 - from KEGG:
@@ -238,4 +238,10 @@ KEGG seems to only have hematopoietic cell lineage:
 #### taking only CL IDs
 
 **fantom_CL_layout_nicely**
-![fantom_CL_layout_nicely](https://github.com/thejmazz/ontoscope-cell-lineage/blob/master/plots/fantom_CL_layout_nicely.png)
+![fantom_CL_layout_nicely](./plots/fantom_CL_layout_nicely.png?raw=true)
+
+**fantom_CL_kk_fast_greedy** (Kamada-Kawai layout)
+![fantom_CL_kk_fast_greedy](./plots/fantom_CL_kk_fast_greedy.png)
+
+**fantom_CL_fast_greedy** (only connective edges)
+![fantom_CL_fast_greedy](./plots/fantom_CL_fast_greedy.png)
