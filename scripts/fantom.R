@@ -300,4 +300,4 @@ as_data_frame(joined, what="edges")
 as_data_frame(joined, what="vertices")
 
 
-makeVisNetwork(joined, customGroups=FALSE, useLabel=TRUE, cluster=FALSE, layout="layout_with_kk")
+makeVisNetwork(joined, customGroups=TRUE, useLabel=TRUE, cluster=FALSE, layout="layout_with_kk")

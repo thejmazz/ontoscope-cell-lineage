@@ -270,3 +270,8 @@ after 8 orders, vertex/edge count is constant.
 
 **kegg_hematopoietic_cell_lineage_normalized**
 ![kegg_hematopoietic_cell_lineage_normalized.png](./plots/kegg_hematopoietic_cell_lineage_normalized.png)
+
+- joined fantom and kegg
+
+**fantom_union_kegg**
+![fantom_union_kegg](./plots/fantom_union_kegg.png)
