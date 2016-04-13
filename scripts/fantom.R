@@ -146,7 +146,7 @@ count_components(gCL) # 1. nice.
 
 edge_attr(gCL, "weight") <- edge_betweenness(gCL)
 
-makeVisNetwork(gCL, clusterAlg=cluster_fast_greedy, clusterAsUndirected=TRUE)
+# visNet <- makeVisNetwork(gCL, clusterAlg=cluster_walktrap, clusterAsUndirected=FALSE, layout="layout_with_kk")
 
 makeVisNetwork(gCL, layout="layout_with_dh", clusterAlg=cluster_fast_greedy, clusterAsUndirected=TRUE)
 makeVisNetwork(gCL, layout="layout_with_lgl")
@@ -170,7 +170,7 @@ hematopoietics <- make_ego_graph(gCL, "CL:0000988", order=8, mode="in")[[1]]
 # and has all terms with hematopoietics
 v[grep("hematopoietic", v$label),]$name %in% as_ids(V(hematopoietics))
 
-makeVisNetwork(hematopoietics, hierarchicalLayout=TRUE, direction="LR")
+visNet <- makeVisNetwork(hematopoietics, hierarchicalLayout=TRUE, direction="LR")
 makeVisNetwork(hematopoietics, layout="layout_with_kk")
 
 # ==============================================================================
@@ -269,7 +269,7 @@ verts[49]; labels[49] <- "Platelets"
 hsa <- set_vertex_attr(hsa, "name", value=verts)
 hsa <- set_vertex_attr(hsa, "label", value=labels)
 # hsa <- set_edge_attr(hsa, "weight", value=rep(1, length(E(hsa))))
-makeVisNetwork(hsa, hierarchicalLayout=TRUE, direction="LR")
+visNet <- makeVisNetwork(hsa, hierarchicalLayout=TRUE, direction="LR")
 
 # ==============================================================================
 # joining graphs: hematopoietics and hsa

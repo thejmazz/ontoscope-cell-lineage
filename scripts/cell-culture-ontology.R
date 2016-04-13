@@ -15,23 +15,6 @@ if (!require(igraph, quietly=TRUE)) install.packages("igraph")
 # talk to vis.js, with igraph!
 if (!require(visNetwork, quietly=TRUE)) install.packages("visNetwork")
 
-
-makeVisNetwork <- function (graph, customLayout="layout_nicely") {
-  nodes <- as_data_frame(graph, what="vertices")
-  # colnames(nodes) <- c("id")
-  # nodes <- data.frame(id=nodes$name, label=nodes$name)
-  # nodes <- data.frame(id=nodes$name, label='')
-  nodes <- data.frame(id=nodes$name, label=nodes$desc)
-
-  edges <- as_data_frame(graph, what="edges")
-  visNet <<- visNetwork(nodes, edges, width = "100%") %>%
-    visHierarchicalLayout(direction="LR", levelSeparation=250) %>%
-    # visIgraphLayout(layout = customLayout) %>%
-    visNodes(size=5) %>%
-    visEdges(arrows="to", smooth=TRUE)
-  visNet
-}
-
 # ==============================================================================
 # using OWL
 
@@ -72,11 +55,13 @@ length(unique(edges$to))
 
 extras <- unique(edges$to[!(edges$to %in% edges$from)])
 length(extras) # 2
-verts <- data.frame(name=c(edges$from, extras), desc=c(CCO$Preferred.Label, "EXTRA", "EXTRA"))
+verts <- data.frame(name=c(edges$from, extras), label=c(CCO$Preferred.Label, "EXTRA", "EXTRA"))
 
 
 
 G <- graph_from_data_frame(edges, vertices=verts)
+
+visNet <- makeVisNetwork(G, useLabel=TRUE, cluster=TRUE, clusterAlg=cluster_fast_greedy, clusterAsUndirected=TRUE)
 
 # minC <- rep(-Inf, vcount(G))
 # maxC <- rep(Inf, vcount(G))
@@ -102,3 +87,4 @@ G2 <- delete_edges(G, proles)
 G2 <- delete.vertices(G2, which(igraph::degree(G2) == 0))
 
 makeVisNetwork(G2)
+visNet <- makeVisNetwork(G2, useLabel=TRUE, hierarchicalLayout=TRUE, direction="LR", cluster=TRUE, clusterAlg=cluster_fast_greedy, clusterAsUndirected=TRUE)
